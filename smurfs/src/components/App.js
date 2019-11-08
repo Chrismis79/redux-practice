@@ -1,6 +1,9 @@
 import React from "react";
 import "./App.css";
 
+import Village from '../components/Village';
+import SmurfForm from '../components/SmurfForm';
+
 
 const App = () => {
   
