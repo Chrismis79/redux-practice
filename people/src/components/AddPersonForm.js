@@ -3,16 +3,17 @@ import {connect} from 'react-redux';
 import {addPerson} from '../redux/actions';
 
 const AddPersonForm = (props) => {
-    const [input, setInput] = useState({name: '', age: '', favoriteFood: ''})
+    console.log("addpersonformprops:", props)
+    const [input, setInput] = useState({name: "", age: "", favoriteFood: "", id: Date.now()})
 
     const handleChanges = e => {
-        setInput({...input, [e.target.name] : [e.target.value]});
+        setInput({...input, [e.target.name] : e.target.value});
     };
 
     const handleSubmit = e => {
-        e.PreventDefault();
+        e.preventDefault();
         props.addPerson(input);
-        setInput({name: '', age: '', favoriteFood: ''})
+        setInput({name: "", age: "", favoriteFood: ""})
     }
 
     return (
@@ -22,12 +23,12 @@ const AddPersonForm = (props) => {
                     <input onChange={handleChanges} name='name' type='text' placeholder='Name here...' value={input.name}/>
                 </div>
                 <div>
-                    <label htmlFor='height'/>Height: 
-                    <input onChange={handleChanges} name='height' type='text' placeholder='Favorite food here...' value={input.favoriteFood}/>
-                </div>
-                <div>
                     <label htmlFor='age'/>Age: 
                     <input onChange={handleChanges} name='age' type='text' placeholder='Age here...' value={input.age}/>
+                </div>
+                <div>
+                    <label htmlFor='favoriteFood'/>Favorite Food: 
+                    <input onChange={handleChanges} name='favoriteFood' type='text' placeholder='Favorite food here...' value={input.favoriteFood}/>
                 </div>
                 <button type='submit'>Add Person</button>
             </form>

@@ -12,13 +12,18 @@ export const reducer = (state = initialState, action) => {
         case FETCH_PEOPLE:
             return { 
                 ...state,
+                people: [],
                 isFetching: true,
+                isAdding: false,
+                error: null
             }
         case FETCH_SUCCESS: 
             return {
                 ...state,
                 people: action.payload,
                 isFetching: false,
+                isAdding: false,
+                error: null
             }
         case FETCH_ERROR:
             return {
@@ -29,15 +34,17 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 isAdding: true,
-                people: action.payload,
+                isFetching: false,
+                people: action.payload
             }
-            case ADD_SUCCESS: 
+        case ADD_SUCCESS: 
             return {
                 ...state,
                 isAdding: false,
-                people: action.payload,
+                isFetching: false,
+                people: [...state.people, action.payload],
             }
-            case ADD_ERROR: 
+        case ADD_ERROR: 
             return {
                 ...state,
                 error: action.payload,
