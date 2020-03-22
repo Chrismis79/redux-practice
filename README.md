@@ -13,14 +13,6 @@ Follow these steps to set up your project:
 - [ ] **cd** into `people` and run `yarn` to retrieve the client side dependencies.
 - [ ] **RUN** `yarn start` to fire up your React application. There ought to be a pretty little message awaiting you welcoming you to the app. `Follow` the prompting.
 
-**LOOK** at all the files you've been given for this project. One important file to note is `server.js`. This file contains an **API** that you are going to be interfacing with. Below is documentation on how to interact with the **API**.
-
-## Minimum Viable Product
-
-- [ ] Plan and implement how you are going to manage your state for your application
-- [ ] You _must_ use either context or Redux as your state management system
-- [ ] Once you have planned out your state management system, fetch data from the smurf server and display the data it returns
-- [ ] Add a form to collect info for a new person, and make a POST request to the server to add a new person to your database.
 
 ## API documentation
 
