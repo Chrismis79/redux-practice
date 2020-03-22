@@ -15,3 +15,17 @@ export const fetchPeople = () => dispatch => {
 }
 
 
+export const ADD_PEOPLE = 'ADD_PEOPLE';
+export const ADD_SUCCESS = 'ADD_SUCCESS';
+export const ADD_ERROR = 'ADD_ERROR';
+
+export const addPerson = (person) => dispatch => {
+    dispatch({type: ADD_PEOPLE});
+    axios.post('http:localhost:4000/people', person)
+        .then(res => {
+            console.log("Response", res)
+            return dispatch({type: ADD_SUCCESS, payload: res.data});
+        })
+        .catch(err => dispatch({type: ADD_ERROR, payload: err.res}));
+}
+
