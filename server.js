@@ -22,7 +22,8 @@ let people = [
   {
     name: 'Amanda',
     age: 30,
-    favoriteFood: 'Tacos'
+    favoriteFood: 'Tacos',
+    id: 1
   }
 ];
 server.get('/people', (req, res) => {
