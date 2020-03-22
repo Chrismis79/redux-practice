@@ -42,7 +42,7 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 isAdding: false,
                 isFetching: false,
-                people: [...state.people, action.payload],
+                people: action.payload,
             }
         case ADD_ERROR: 
             return {
