@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const port = 3333;
+const port = 4000;
 
 const server = express();
 server.use(express.json());
@@ -12,70 +12,75 @@ const sendUserError = (msg, res) => {
   return;
 };
 
-let smurfs = [
+let people = [
   {
-    name: 'Brainey',
-    age: 200,
-    height: '5cm',
+    name: 'Christine',
+    age: 40,
+    favoriteFood: 'Pizza',
     id: 0
+  },
+  {
+    name: 'Amanda',
+    age: 30,
+    favoriteFood: 'Tacos'
   }
 ];
-server.get('/smurfs', (req, res) => {
-  res.json(smurfs);
+server.get('/people', (req, res) => {
+  res.json(people);
 });
-let smurfId = smurfs.length;
+let peopleId = people.length;
 
-server.post('/smurfs', (req, res) => {
-  const { name, age, height } = req.body;
-  const newSmurf = { name, age, height, id: smurfId };
-  if (!name || !age || !height) {
+server.post('/people', (req, res) => {
+  const { name, age, favoriteFood } = req.body;
+  const newPerson = { name, age, favoriteFood, id: peopleId };
+  if (!name || !age || !favoriteFood) {
     return sendUserError(
-      'Ya gone did smurfed! Name/Age/Height are all required to create a smurf in the smurf DB.',
+      'Name/Age/favoriteFood are all required to create a smurf in the person DB.',
       res
     );
   }
-  const findSmurfByName = smurf => {
-    return smurf.name === name;
+  const findPersonByName = person => {
+    return person.name === name;
   };
-  if (smurfs.find(findSmurfByName)) {
+  if (people.find(findPersonByName)) {
     return sendUserError(
-      `Ya gone did smurfed! ${name} already exists in the smurf DB.`,
+      `${name} already exists in the people DB.`,
       res
     );
   }
 
-  smurfs.push(newSmurf);
-  smurfId++;
-  res.json(smurfs);
+  people.push(newPerson);
+  personId++;
+  res.json(people);
 });
 
-server.put('/smurfs/:id', (req, res) => {
+server.put('/people/:id', (req, res) => {
   const { id } = req.params;
-  const { name, age, height } = req.body;
-  const findSmurfById = smurf => {
-    return smurf.id == id;
+  const { name, age, favoriteFood } = req.body;
+  const findPersonById = person => {
+    return person.id == id;
   };
-  const foundSmurf = smurfs.find(findSmurfById);
-  if (!foundSmurf) {
-    return sendUserError('No Smurf found by that ID', res);
+  const foundPerson = people.find(findPersonById);
+  if (!foundPerson) {
+    return sendUserError('No person found by that ID', res);
   } else {
-    if (name) foundSmurf.name = name;
-    if (age) foundSmurf.age = age;
-    if (height) foundSmurf.height = height;
-    res.json(smurfs);
+    if (name) foundPerson.name = name;
+    if (age) foundPerson.age = age;
+    if (height) foundPerson.favoriteFood = favoriteFood;
+    res.json(people);
   }
 });
 
-server.delete('/smurfs/:id', (req, res) => {
+server.delete('/people/:id', (req, res) => {
   const { id } = req.params;
-  const foundSmurf = smurfs.find(smurf => smurf.id == id);
+  const foundPerson = people.find(person => person.id == id);
 
-  if (foundSmurf) {
-    const SmurfRemoved = { ...foundSmurf };
-    smurfs = smurfs.filter(smurf => smurf.id != id);
-    res.status(200).json(smurfs);
+  if (foundPerson) {
+    const personRemoved = { ...foundPerson };
+    people = people.filter(person => person.id != id);
+    res.status(200).json(people);
   } else {
-    sendUserError('No smurf by that ID exists in the smurf DB', res);
+    sendUserError('No person by that ID exists in the people DB', res);
   }
 });
 
