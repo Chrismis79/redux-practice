@@ -13,7 +13,6 @@ export const reducer = (state = initialState, action) => {
             return { 
                 ...state,
                 isFetching: true,
-                
             }
         case FETCH_SUCCESS: 
             return {
@@ -30,8 +29,7 @@ export const reducer = (state = initialState, action) => {
         case ADD_PEOPLE: 
             return {
                 ...state,
-                isAdding: true,
-                people: action.payload
+                isAdding: true
             }
         case ADD_SUCCESS: 
             return {

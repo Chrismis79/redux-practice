@@ -21,7 +21,7 @@ export const ADD_ERROR = 'ADD_ERROR';
 
 
 export const addPerson = person => dispatch => {
-    dispatch({type: ADD_PEOPLE, payload: "New person added..."})
+    dispatch({type: ADD_PEOPLE})
     axios.post('http://localhost:4000/people', person)
         .then(res => {
             console.log(res)

@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {addPerson} from '../redux/actions';
 
 const AddPersonForm = (props) => {
-    console.log("addpersonformprops:", props)
+    
     const [input, setInput] = useState({name: "", age: "", favoriteFood: "", id: Date.now()})
 
     const handleChanges = e => {
